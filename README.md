@@ -32,7 +32,7 @@ Calculates gravitational acceleration, molecular-scale temperature, pressure, ma
 | $g_0$ | $9.80665$ | $m/s^2$ | Sea-level gravitational acceleration |
 | $g_0'$ | $9.80665$ | $m^2/(s^2 \cdot m')$ | Standard gravitational acceleration for geopotential altitude |
 | $T_0$ | $288.15$ | $K$ | Sea-level molecular-scale temperature |
-| $P_0$ | $1.01325$ | $Pa$ | Sea-level pressure |
+| $P_0$ | $1.01325 \times 10^5$ | $Pa$ | Sea-level pressure |
 | $r_0$ | $6.356766 \times 10^6$ | $m$ | Effective earth radius |
 | $M_0$ |  $28.9644$ | $kg/kmol$ | Mean molecular weight of air |
 | $R^*$ |  $8.31432 \times 10^3$ | $J/(kmol \cdot K)$ | Universal gas constant |
@@ -42,8 +42,10 @@ Calculates gravitational acceleration, molecular-scale temperature, pressure, ma
 
 ### $H_b$ and $L_{M,b}$ values:
 
+Note: For unit consistency, convert altitude from $km$ to $m$ and molecular-scale temperature gradient from $K/km$ to $K/m$ before applying the equations.
+
 | Subscript | Geopotential height $(H_b \quad [km])$ | Molecular-scale temperature gradient $(L_{M,b} \quad [K/km])$|
-|:----------|:---------------------------|:---------------------------------------------|
+|:----------|:---------------------------------------|:-------------------------------------------------------------|
 | $0$ | $0$ | $-6.5$ |
 | $1$ | $11$ | $0$ |
 | $2$ | $20$ | $+1$ |

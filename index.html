@@ -6,8 +6,60 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>ISA</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <header>
+            <img src="#">
+            <h1>ISA Calculator</h1>
+            <button>dark</button>
+        </header>
+        <main>
+            <section class="input">
+                <h2>Input</h2>
+                <div class="box">
+                    <label>Z</label>
+                    <input id="input" type="number" placeholder="0">
+                    <label>m</label>
+                </div>
+                <button id="calculate">calculate</button>
+            </section>
+            <section class="output">
+                <h2>Output</h2>
+                <div class="box">
+                    <div class="box__item">
+                        <label>g</label>
+                        <input type="text" readonly>
+                        <label>m/s<sup>2</sup></label>
+                    </div>
+                    <div class="box__item">
+                        <label>T<sub>M</sub></label>
+                        <input type="text" readonly>
+                        <label>K</label>
+                    </div>
+                    <div class="box__item">
+                        <label>P</label>
+                        <input type="text" readonly>
+                        <label>Pa</label>
+                    </div>
+                    <div class="box__item">
+                        <label>&rho;</label>
+                        <input type="text" readonly>
+                        <label>kg/m<sup>3</sup></label>
+                    </div>
+                    <div class="box__item">
+                        <label>C<sub>s</sub></label>
+                        <input type="text" readonly>
+                        <label>m/s</label>
+                    </div>
+                    <div class="box__item">
+                        <label>&mu;</label>
+                        <input type="text" readonly>
+                        <label>Pa&centerdot;s</label>
+                    </div>
+                </div>
+            </section>
+        </main>
         <script type='module' src="scripts/main.js"></script>
     </body>
 </html>

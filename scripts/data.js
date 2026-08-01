@@ -10,7 +10,8 @@ export const constants = {
     GAMMA: 1.4,
     BETA: 1.458e-6,
     S: 110,
-    HMAX: 86e3
+    ZMIN: 0,
+    ZMAX: 86e3
 };
 export const layers = [
     {HB: 0, LB: -6.5e-3},

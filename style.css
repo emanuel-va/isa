@@ -1,0 +1,37 @@
+/* style.css */
+
+* {
+    font-size: 1rem;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+
+/* ----- header ----- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eee;
+}
+
+/* ----- main ----- */
+section {
+    background-color: #eee;
+    margin: 10px 0;
+}
+.input .box {
+    background-color: #ddd;
+}
+input {
+    width: 40%;
+}
+
+/* output */
+.output .box__item {
+    margin: 10px 0;
+    background-color: #ddd;
+}
+.output input {
+    outline: none;
+}

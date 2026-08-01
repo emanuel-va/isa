@@ -36,23 +36,24 @@ for (let i = 0; i < layers.length - 1; i++) {
 export class AtmosphericValues {
     constructor(z) {
         this.z = z;
-        this.h = geopotentialAltitude(this.z);
-        this.hb, this.lb, this.tb, this.pb; // variables as a function of altitude
 
-        if (this.h < layers[0].HB || this.h > layers[7].HB) { // error message just in case user input was negative or greater than 86 km
-            console.log(`Altitude must be between ${layers[0].HB} and ${constants.HMAX} m.`);
-        }
+        if (this.z >= constants.ZMIN && this.z <= constants.ZMAX) { // adding calculator altitude range from 0 to 86 km
+            this.h = this.z === constants.ZMAX ? Math.floor(geopotentialAltitude(this.z)) : geopotentialAltitude(this.z);
+            this.hb, this.lb, this.tb, this.pb; // variables as a function of altitude
 
-        for (let i = 0; i < layers.length; i++) {
-            let currentLayer = layers[i];
-            let nextLayer = layers[i + 1];
+            for (let i = 0; i < layers.length; i++) {
+                let currentLayer = layers[i];
+                let nextLayer = layers[i + 1];
 
-            if (this.h >= currentLayer.HB && (nextLayer === undefined || this.h < nextLayer.HB)) { // select layers from geopotential altitude 0 to 84.852 km
-                this.hb = currentLayer.HB;
-                this.lb = currentLayer.LB ?? layers[i - 1].LB;
-                this.tb = currentLayer.TB ?? constants.T0;
-                this.pb = currentLayer.PB ?? constants.P0;
+                if (this.h >= currentLayer.HB && (nextLayer === undefined || this.h < nextLayer.HB)) { // select layers from geopotential altitude 0 to 84.852 km
+                    this.hb = currentLayer.HB;
+                    this.lb = currentLayer.LB ?? layers[i - 1].LB;
+                    this.tb = currentLayer.TB ?? constants.T0;
+                    this.pb = currentLayer.PB ?? constants.P0;
+                }
             }
+        } else {
+            console.log(`wrong altitude: ${this.z} m.\nit must be a value between ${constants.ZMIN} and ${constants.ZMAX} m.`);
         }
     }
 

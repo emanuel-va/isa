@@ -36,15 +36,15 @@ for (let i = 0; i < layers.length - 1; i++) {
 export class AtmosphericValues {
     constructor(z) {
         this.z = z;
+        this.isZValid;
+        this.message;
 
         if (this.z >= constants.ZMIN && this.z <= constants.ZMAX) { // adding calculator altitude range from 0 to 86 km
             this.h = this.z === constants.ZMAX ? Math.floor(geopotentialAltitude(this.z)) : geopotentialAltitude(this.z);
             this.hb, this.lb, this.tb, this.pb; // variables as a function of altitude
-
             for (let i = 0; i < layers.length; i++) {
                 let currentLayer = layers[i];
                 let nextLayer = layers[i + 1];
-
                 if (this.h >= currentLayer.HB && (nextLayer === undefined || this.h < nextLayer.HB)) { // select layers from geopotential altitude 0 to 84.852 km
                     this.hb = currentLayer.HB;
                     this.lb = currentLayer.LB ?? layers[i - 1].LB;
@@ -52,8 +52,11 @@ export class AtmosphericValues {
                     this.pb = currentLayer.PB ?? constants.P0;
                 }
             }
+            this.message = 'Done.';
+            this.isZValid = true;
         } else {
-            console.log(`wrong altitude: ${this.z} m.\nit must be a value between ${constants.ZMIN} and ${constants.ZMAX} m.`);
+            this.isZValid = false;
+            this.message = `Altitude must be a value between ${constants.ZMIN} and ${constants.ZMAX} m.`
         }
     }
 
@@ -76,7 +79,7 @@ export class AtmosphericValues {
         let t = temp(this.tb, this.lb, this.h, this.hb);
         return ((constants.GAMMA * constants.R * t) / constants.M0)**(1/2); // calculating speed of sound as a function of geopotential altitude
     }
-    dynamicViscosity() {
+    viscosity() {
         let t = temp(this.tb, this.lb, this.h, this.hb);
         return (constants.BETA * t**(3/2)) / (t + constants.S); // calculating dynamic viscosity as a function of geopotential altitude
     }

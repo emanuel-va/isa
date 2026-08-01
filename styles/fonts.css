@@ -1,0 +1,12 @@
+/* fonts.css */
+
+@font-face { /* regular */
+    font-family: anonymus-pro;
+    src: url("../assets/fonts/AnonymousPro-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+@font-face { /* bold */
+    font-family: anonymus-pro;
+    src: url("../assets/fonts/AnonymousPro-Bold.ttf") format("truetype");
+    font-weight: bold;
+}

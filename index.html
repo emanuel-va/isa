@@ -5,70 +5,81 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ISA</title>
+        <title>SA Calculator</title>
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/fonts.css">
-        <link rel="icon" href="assets/img/logos/icon.png" type="image/png">
+        <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
     </head>
     <body class="light">
         <header>
-            <img id="logo" src="assets/img/logos/light.png">
-            <h1>ISA Calculator</h1>
+            <svg id="logo" width="24px" height="24px" viewBox="0 -960 960 960">
+                <path d="M260-160q-91 0-155.5-63T40-377q0-78 47-139t123-78q25-92 100-149t170-57q117 0 198.5 81.5T760-520q69 8 114.5 59.5T920-340q0 75-52.5 127.5T740-160H260Z"/>
+            </svg>
+            <h1><span class="short-title">SA Calculator</span><span class="long-title">Standard Atmosphere Calculator</span></h1>
             <button id="switch-theme-button">
-                <img id="theme-icon" src="assets/img/icons/dark.png">
+                <svg id="switch-theme-icon" width="24px" height="24px" viewBox="0 -960 960 960">
+                    <path d="M480-120q-151 0-255.5-104.5T120-480q0-138 90-239.5T440-838q13-2 23 3.5t16 14.5q6 9 6.5 21t-7.5 23q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q11-7 22.5-6.5T819-479q10 5 15.5 15t3.5 24q-14 138-117.5 229T480-120Z"/>
+                </svg>
             </button>
         </header>
         <main>
             <section class="section input">
                 <h2>Input</h2>
                 <div class="box box__item">
-                    <label for="input">Z</label>
+                    <label for="input"><span class="short-value">Z</span><span class="long-value">Geometrical Altitude (Z)</span></label>
                     <input id="input" type="number" placeholder="0">
                     <span>m</span>
                 </div>
-                <span class="message"></span>
-                <button id="calculate-button">Calculate</button>
+                <span class="alert"></span>
+                <button id="calculate-button">
+                    <svg id="calculate-button-icon" width="24px" height="24px" viewBox="0 -960 960 960">
+                        <path d="M320-320v50q0 13 8.5 21.5T350-240q13 0 21.5-8.5T380-270v-50h50q13 0 21.5-8.5T460-350q0-13-8.5-21.5T430-380h-50v-50q0-13-8.5-21.5T350-460q-13 0-21.5 8.5T320-430v50h-50q-13 0-21.5 8.5T240-350q0 13 8.5 21.5T270-320h50Zm230 50h140q13 0 21.5-8.5T720-300q0-13-8.5-21.5T690-330H550q-13 0-21.5 8.5T520-300q0 13 8.5 21.5T550-270Zm0-100h140q13 0 21.5-8.5T720-400q0-13-8.5-21.5T690-430H550q-13 0-21.5 8.5T520-400q0 13 8.5 21.5T550-370ZM280-592h140q13 0 21.5-8.5T450-622q0-13-8.5-21.5T420-652H280q-13 0-21.5 8.5T250-622q0 13 8.5 21.5T280-592Zm-80 472q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm420-458 35 35q9 9 21 9t21-9q8-8 8.5-20.5T698-585l-36-37 35-35q9-9 9-21t-9-21q-9-9-21-9t-21 9l-35 35-35-35q-9-9-21-9t-21 9q-9 9-9 21t9 21l35 35-36 37q-8 9-8 21t9 21q9 9 21 9t21-9l35-35Z"/>
+                    </svg>
+                    Calculate
+                </button>
             </section>
             <section class="section output">
                 <h2>Output</h2>
                 <div class="box">
                     <div class="box__item">
-                        <span>g</span>
+                        <span><span class="short-value">g</span><span class="long-value">Gravitational acceleration (g)</span></span>
                         <input type="text" name="gravity" placeholder="-" readonly>
                         <span>m/s<sup>2</sup></span>
                     </div>
                     <div class="box__item">
-                        <span>T<sub>M</sub></span>
+                        <span><span class="short-value">T<sub>M</sub></span><span class="long-value">Molecular-Scale Temperature (T<sub>M</sub>)</span></span>
                         <input type="text" name="temperature" placeholder="-" readonly>
                         <span>K</span>
                     </div>
                     <div class="box__item">
-                        <span>P</span>
+                        <span><span class="short-value">P</span><span class="long-value">Pressure (P)</span></span>
                         <input type="text" name="pressure" placeholder="-" readonly>
                         <span>Pa</span>
                     </div>
                     <div class="box__item">
-                        <span>&rho;</span>
+                        <span><span class="short-value">&rho;</span><span class="long-value">Mass Density (&rho;)</span></span>
                         <input type="text" name="density" placeholder="-" readonly>
                         <span>kg/m<sup>3</sup></span>
                     </div>
                     <div class="box__item">
-                        <span>C<sub>s</sub></span>
+                        <span><span class="short-value">C<sub>s</sub></span><span class="long-value">Speed of Sound (C<sub>s</sub>)</span></span>
                         <input type="text" name="speed-of-sound" placeholder="-" readonly>
                         <span>m/s</span>
                     </div>
                     <div class="box__item">
-                        <span>&mu;</span>
+                        <span><span class="short-value">&mu;</span><span class="long-value">Dynamic Viscosity (&mu;)</span></span>
                         <input type="text" name="viscosity" placeholder="-" readonly>
                         <span>Pa&centerdot;s</span>
                     </div>
                 </div>
             </section>
             <footer class="section">
-                <div class="github">
-                    <img src="assets/img/icons/github.png">
-                    <span><a href="https://github.com/emanuel-va/isa" target="_blank">GitHub</a></span>
-                </div>
+                <a class="github" href="https://github.com/emanuel-va/isa" target="_blank">
+                    <svg id="github-icon" width="24px" height="24px" viewBox="0 0 30 30">
+                        <path d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z"/>
+                    </svg>
+                    GitHub
+                </a>
                 <span>Copyright &copy; 2026</span>
             </footer>
         </main>

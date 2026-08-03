@@ -1,41 +1,61 @@
 /* style.css */
 
+/* ----- general ----- */
 :root {
     /* dimensions */
     --spacing: 10px;
     --border: 1px;
     --radius: 15px;
-
-    /* colors */
-    --theme: #888;
-    --magenta: #f0f;
-    --red: #f00;
-    --green: #0f0;
-    --blue: #00f;
-    --transparent-red: #f002;
-    --transparent-green: #0f02;
-    --transparent-blue: #00f2;
-    --transparent-magenta: #f0f2;
+    --time: .5s;
+    --animation: ease;
 }
-.dark {
+.dark { /* dark mode color scheme colors */
     --background: #222;
     --foreground: #aaa;
+    --theme: #d8bd0e;
+    --theme-hover: #333;
     --gray: #444;
-    --cyan: #0ff;
     --transparent-gray: #4442;
-    --transparent-cyan: #0ff2;
+    --orange: #fe4c25;
+    --transparent-orange: #fe4c2522;
+    --green: #0fbf3e;
+    --transparent-green: #0fbf3e22;
+    --blue: #3094ff;
+    --transparent-blue: #3094ff22;
+    --blue-hover: #9eecff;
+    --transparent-blue-hover: #9eecff22;
+    --cyan: #0aa;
+    --transparent-cyan: #0aa2;
+    --purple: #8534f3;
+    --transparent-purple: #8534f322;
+    --purple-hover: #b870ff;
+    --transparent-purple-hover: #b870ff22;
 }
-.light {
+.light { /* light mode color scheme colors */
     --background: #fff;
     --foreground: #333;
+    --theme: #001c4d;
+    --theme-hover: #eee;
     --gray: #aaa;
-    --cyan: #088;
     --transparent-gray: #aaa2;
+    --orange: #c53211;
+    --transparent-orange: #c5321122;
+    --green: #08872b;
+    --transparent-green: #08872b22;
+    --blue: #0527fc;
+    --transparent-blue: #0527fc22;
+    --blue-hover: #3094ff;
+    --transparent-blue-hover: #3094ff22;
+    --cyan: #088;
     --transparent-cyan: #0882;
+    --purple: #43179e;
+    --transparent-purple: #43179e22;
+    --purple-hover: #8534f3;
+    --transparent-purple-hover: #8534f322;
 }
 * {
     font-size: 1rem;
-    font-family: anonymus-pro;
+    font-family: roboto-mono;
     margin: 0;
     padding: 0;
 }
@@ -44,29 +64,24 @@ body {
 }
 
 /* ----- text -----*/
-h1 {
+h1 span {
     color: var(--cyan)
 }
-h2,
-label,
-span,
-sub,
-sup {
+h2, label, span, sub, sup {
     color: var(--foreground);
 }
-sub,
-sup {
+sub, sup {
     font-size: .7rem
 }
 a {
-    color: var(--magenta);
+    color: var(--purple);
     text-decoration: none;
 }
-
-/* images */
-img {
-    width: 24px;
-    height: 24px;
+.long-title {
+    display: none;
+}
+.long-value {
+    display: none;
 }
 
 /* ----- header ----- */
@@ -80,6 +95,25 @@ header {
     background-color: var(--transparent-cyan);
     border: var(--border) solid var(--cyan);
     border-radius: var(--radius);
+    transition: background-color var(--time) var(--animation), border-color var(--time) var(--animation);
+}
+#logo {
+    fill: var(--cyan);
+    transition: fill var(--time) var(--animation);
+}
+#switch-theme-button {
+    color: var(--cyan);
+    display: flex;
+    background-color: var(--background);
+    border-color: var(--theme);
+    border-radius: 50%;
+    transition: background-color var(--time) var(--animation);
+}
+#switch-theme-button:hover {
+    background-color: var(--theme-hover);
+}
+#switch-theme-icon {
+    fill: var(--theme);
 }
 
 /* ----- main ----- */
@@ -103,8 +137,7 @@ header {
     border: var(--border) solid var(--gray);
     border-radius: calc(var(--radius) - var(--spacing));
 }
-input,
-button {
+input, button {
     border: var(--border) solid;
 }
 input {
@@ -115,42 +148,62 @@ input {
     color: var(--foreground);
     border-radius: calc(var(--radius) - var(--spacing));
 }
-input::placeholder {
-    color: var(--gray);
-}
 button {
     background-color: transparent;
     padding: calc(var(--spacing) / 2);
 }
-#switch-theme-button {
-    color: var(--cyan);
-    display: flex;
-    background-color: var(--background);
-    border-color: var(--theme);
-    border-radius: 50%;
+button:hover {
+    cursor: pointer;
+}
+input::placeholder {
+    color: var(--gray);
 }
 #calculate-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing);
     color: var(--blue);
     background-color: var(--transparent-blue);
     border-radius: calc(var(--radius) - var(--spacing));
+    padding: var(--spacing);
+    transition: background-color var(--time) var(--animation), color var(--time) var(--animation);
+}
+#calculate-button-icon {
+    fill: var(--blue);
+    transition: fill var(--time) var(--animation)
+}
+#calculate-button:hover {
+    color: var(--blue-hover);
+    background-color: var(--transparent-blue-hover);
+}
+#calculate-button:hover #calculate-button-icon {
+    fill: var(--blue-hover);
+}
+#calculate-button:active {
+    color: var(--blue);
+    background-color: var(--transparent-blue);
 }
 
 /* input */
-.message {
+.input input::-webkit-inner-spin-button {
+    display: none;
+}
+.alert {
     display: none;
     font-size: .8rem;
     padding: var(--spacing);
+    border-left: calc(var(--border) * 5) solid;
     border-radius: calc(var(--radius) - var(--spacing));
 }
-.message--done {
+.alert--done {
     color: var(--green);
     background-color: var(--transparent-green);
     display: block;
-
 }
-.message--error {
-    color: var(--red);
-    background-color: var(--transparent-red);
+.alert--error {
+    color: var(--orange);
+    background-color: var(--transparent-orange);
     display: block;
 }
 
@@ -171,10 +224,57 @@ footer {
 .github {
     display: flex;
     gap: var(--spacing);
-    border: var(--border) solid var(--magenta);
-    background-color: var(--transparent-magenta);
+    border: var(--border) solid var(--purple);
+    background-color: var(--transparent-purple);
     justify-content: center;
     align-items: center;
     padding: var(--spacing);
     border-radius: calc(var(--radius) - var(--spacing));
+    transition: background-color var(--time) var(--animation), color var(--time) var(--animation);
+}
+#github-icon {
+    fill: var(--purple);
+    transition: fill var(--time) var(--animation);
+}
+.github:hover {
+    color: var(--purple-hover);
+    border-color: var(--purple-hover);
+    background-color: var(--transparent-purple-hover);
+}
+.github:hover #github-icon {
+    fill: var(--purple-hover);
+}
+.github:active {
+    color: var(--purple);
+    border-color: var(--purple);
+    background-color: var(--transparent-purple);
+}
+.github:active #github-icon {
+    fill: var(--purple);
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    header, .section {
+        width: 40%;
+    }
+}
+@media screen and (min-width: 769px) {
+    header, .section {
+        width: 40%;
+    }
+    .box__item {
+        grid-template-columns: 2fr 2fr 1fr
+    }
+    .long-title {
+        display: inline;
+    }
+    .short-title {
+        display: none;
+    }
+    .long-value {
+        display: inline;
+    }
+    .short-value {
+        display: none;
+    }
 }

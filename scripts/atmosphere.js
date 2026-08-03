@@ -37,7 +37,7 @@ export class AtmosphericValues {
     constructor(z) {
         this.z = z;
         this.isZValid;
-        this.message;
+        this.alert;
 
         if (this.z >= constants.ZMIN && this.z <= constants.ZMAX) { // adding calculator altitude range from 0 to 86 km
             this.h = this.z === constants.ZMAX ? Math.floor(geopotentialAltitude(this.z)) : geopotentialAltitude(this.z);
@@ -52,11 +52,11 @@ export class AtmosphericValues {
                     this.pb = currentLayer.PB ?? constants.P0;
                 }
             }
-            this.message = 'Done.';
+            this.alert = 'Done!';
             this.isZValid = true;
         } else {
             this.isZValid = false;
-            this.message = `Altitude must be a value between ${constants.ZMIN} and ${constants.ZMAX} m.`
+            this.alert = `Altitude must be a value between ${constants.ZMIN} and ${constants.ZMAX.toLocaleString('en-us')} m.`
         }
     }
 

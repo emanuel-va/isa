@@ -58,6 +58,9 @@ export class AtmosphericValues {
             this.isZValid = false;
             this.alert = `Altitude must be a value between ${constants.ZMIN} and ${constants.ZMAX.toLocaleString('en-us')} m.`
         }
+        // defining temperature & pressure as functions of geometrical altitude
+        this.t = temp(this.tb, this.lb, this.h, this.hb);
+        this.p = pres(this.pb, this.tb, this.lb, this.h, this.hb);
     }
 
     // ----- methods -----
@@ -65,22 +68,18 @@ export class AtmosphericValues {
         return constants.G0 * (constants.R0 / (constants.R0 + this.z))**2 // calculating gravitational acceleration as a function of geometrical altitude
     }
     temperature() {
-        return temp(this.tb, this.lb, this.h, this.hb);
+        return this.t;
     }
     pressure() {
-        return pres(this.pb, this.tb, this.lb, this.h, this.hb);
+        return this.p;
     }
     density() {
-        let p = pres(this.pb, this.tb, this.lb, this.h, this.hb);
-        let t = temp(this.tb, this.lb, this.h, this.hb);
-        return (p * constants.M0) / (constants.R * t); // calculating mass density as a function of geopotential altitude
+        return (this.p * constants.M0) / (constants.R * this.t); // calculating mass density as a function of geopotential altitude
     }
     speedOfSound() {
-        let t = temp(this.tb, this.lb, this.h, this.hb);
-        return ((constants.GAMMA * constants.R * t) / constants.M0)**(1/2); // calculating speed of sound as a function of geopotential altitude
+        return ((constants.GAMMA * constants.R * this.t) / constants.M0)**(1/2); // calculating speed of sound as a function of geopotential altitude
     }
     viscosity() {
-        let t = temp(this.tb, this.lb, this.h, this.hb);
-        return (constants.BETA * t**(3/2)) / (t + constants.S); // calculating dynamic viscosity as a function of geopotential altitude
+        return (constants.BETA * this.t**(3/2)) / (this.t + constants.S); // calculating dynamic viscosity as a function of geopotential altitude
     }
 }
